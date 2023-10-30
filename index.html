@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        $(document).ready(function(){
+            $("#biba").click(function(){
+                var div = $("div");
+                var slov = $("#slovo").val();
+
+                div.html(slov);
+                div.animate({left: '700px'}, "slow");
+                div.animate({top: '350px'}, "slow",function() {
+            var fon = $("#prikol");
+            var ww = fon.width() * 2; 
+            var hh = fon.height() * 2; 
+            fon.animate({width: ww, height: hh}, "slow");
+            div.animate({fontSize: '10em'}, "fast");
+        });
+            });
+    
+            $("#bibaboba").click(function(){
+                $.get('https://jsonplaceholder.typicode.com/posts', function(data, textStatus, jqXHR){
+                    $('p').append(data[0].title); 
+                });
+            });
+            $("#bibabobab").click(function(){
+            var postData = {
+                title: 'Шутки кончились'
+            };
+            $.post('https://jsonplaceholder.typicode.com/posts', postData, function(data, textStatus, jqXHR){
+                $('h6').append(data.title); 
+            });
+        });
+    });
+    
+    </script>
+    
+<h3>Введите слово:</h3>
+<input type="text" id="slovo">
+<button id="biba">Начать прикол</button>
+<button id="bibaboba">Начать другой прикол</button>
+<button id="bibabobab"> Последний прикол </button>
+<div id="prikol" style="background:#ff0000;height:100px;width:200px;position:absolute;"></div>
+<p></p>
+<h6></h6>
+    
+</body>
+</html>
